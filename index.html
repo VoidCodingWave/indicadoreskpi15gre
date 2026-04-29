@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>15ª GRE – Gerência Regional de Educação | Paraíba</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ═══════════════ HEADER ═══════════════ -->
+  <header class="site-header">
+    <div class="container-fluid px-0">
+      <div class="header-inner d-flex align-items-center justify-content-between px-4 py-3">
+        <!-- Logo / Identidade -->
+        <div class="d-flex align-items-center gap-3">
+          <div class="logo-emblem">
+            <i class="bi bi-building-fill-gear"></i>
+          </div>
+          <div class="logo-text">
+            <span class="logo-title">15ª GRE</span>
+            <span class="logo-subtitle">Gerência Regional de Educação · Paraíba</span>
+          </div>
+        </div>
+
+        <!-- Nav links (desktop) -->
+        <nav class="header-nav d-none d-lg-flex gap-4 align-items-center">
+          <a href="#kpis" class="nav-link-header">Indicadores</a>
+          <a href="#graficos" class="nav-link-header">Gráficos</a>
+          <a href="#escolas" class="nav-link-header">Escolas</a>
+        </nav>
+
+        <!-- Botão mobile -->
+        <button class="btn-menu d-lg-none" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu" aria-label="Menu">
+          <i class="bi bi-list"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Divisória do Governo -->
+  <div class="gov-strip" aria-hidden="true">
+    <span class="strip-yellow"></span>
+    <span class="strip-red"></span>
+    <span class="strip-blue"></span>
+    <span class="strip-green"></span>
+    <span class="strip-black"></span>
+  </div>
+
+  <!-- ═══════════════ OFFCANVAS MOBILE ═══════════════ -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileMenu">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title">Menu</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body">
+      <nav class="d-flex flex-column gap-3">
+        <a href="#kpis" class="nav-link-mobile" data-bs-dismiss="offcanvas">Indicadores</a>
+        <a href="#graficos" class="nav-link-mobile" data-bs-dismiss="offcanvas">Gráficos</a>
+        <a href="#escolas" class="nav-link-mobile" data-bs-dismiss="offcanvas">Escolas</a>
+        <a href="#contato" class="nav-link-mobile" data-bs-dismiss="offcanvas">Contato</a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- ═══════════════ HERO ═══════════════ -->
+  <section class="hero-section">
+    <div class="hero-bg-pattern" aria-hidden="true"></div>
+    <div class="container py-5">
+      <div class="row align-items-center min-vh-hero">
+        <div class="col-lg-7">
+          <p class="hero-eyebrow">Painel Institucional · 2024</p>
+          <h1 class="hero-title">Educação pública<br><em>de excelência</em><br>no sertão paraibano.</h1>
+          <p class="hero-desc">A 15ª Gerência Regional de Educação acompanha e apoia escolas estaduais de ensino médio nos municípios da sua área de abrangência, promovendo qualidade, equidade e desenvolvimento.</p>
+          <div class="d-flex gap-3 flex-wrap mt-4">
+            <a href="#kpis" class="btn-hero-primary">Ver Indicadores <i class="bi bi-arrow-down ms-1"></i></a>
+            <a href="#graficos" class="btn-hero-outline">Explorar Gráficos</a>
+          </div>
+        </div>
+        <div class="col-lg-5 d-none d-lg-flex justify-content-end">
+          <div class="hero-stat-card">
+            <div class="hsc-row">
+              <div class="hsc-item">
+                <span class="hsc-num" id="heroTotal">42</span>
+                <span class="hsc-label">Escolas</span>
+              </div>
+              <div class="hsc-item">
+                <span class="hsc-num" id="heroMunic">18</span>
+                <span class="hsc-label">Municípios</span>
+              </div>
+            </div>
+            <div class="hsc-row">
+              <div class="hsc-item">
+                <span class="hsc-num" id="heroAlunos">14.820</span>
+                <span class="hsc-label">Alunos</span>
+              </div>
+              <div class="hsc-item">
+                <span class="hsc-num" id="heroProf">892</span>
+                <span class="hsc-label">Professores</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ KPIs ═══════════════ -->
+  <section id="kpis" class="section-kpis py-5">
+    <div class="container">
+      <div class="section-header mb-5">
+        <span class="section-badge">Indicadores</span>
+        <h2 class="section-title">Principais Indicadores</h2>
+        <p class="section-desc">Dados consolidados do ano letivo 2024. Atualização mensal.</p>
+      </div>
+
+      <!-- Filtros de Ano -->
+      <div class="d-flex flex-wrap gap-2 mb-4" id="kpiFilters">
+        <button class="filter-btn active" data-year="2024">2024</button>
+        <button class="filter-btn" data-year="2023">2023</button>
+        <button class="filter-btn" data-year="2022">2022</button>
+      </div>
+
+      <div class="row g-4" id="kpiGrid">
+
+        <!-- KPI 1 -->
+        <div class="col-6 col-md-4 col-xl-2">
+          <div class="kpi-card kpi-primary">
+            <div class="kpi-icon"><i class="bi bi-mortarboard-fill"></i></div>
+            <span class="kpi-value" data-target="14820">0</span>
+            <span class="kpi-label">Matrículas</span>
+            <span class="kpi-trend up"><i class="bi bi-arrow-up-short"></i>3,2%</span>
+          </div>
+        </div>
+
+        <!-- KPI 2 -->
+        <div class="col-6 col-md-4 col-xl-2">
+          <div class="kpi-card kpi-secondary">
+            <div class="kpi-icon"><i class="bi bi-person-badge-fill"></i></div>
+            <span class="kpi-value" data-target="892">0</span>
+            <span class="kpi-label">Professores</span>
+            <span class="kpi-trend up"><i class="bi bi-arrow-up-short"></i>1,8%</span>
+          </div>
+        </div>
+
+        <!-- KPI 3 -->
+        <div class="col-6 col-md-4 col-xl-2">
+          <div class="kpi-card kpi-accent">
+            <div class="kpi-icon"><i class="bi bi-building-fill"></i></div>
+            <span class="kpi-value" data-target="42">0</span>
+            <span class="kpi-label">Escolas</span>
+            <span class="kpi-trend neutral"><i class="bi bi-dash"></i>estável</span>
+          </div>
+        </div>
+
+        <!-- KPI 4 -->
+        <div class="col-6 col-md-4 col-xl-2">
+          <div class="kpi-card kpi-danger">
+            <div class="kpi-icon"><i class="bi bi-person-x-fill"></i></div>
+            <span class="kpi-value" data-target="8" data-suffix="%">0</span>
+            <span class="kpi-label">Evasão</span>
+            <span class="kpi-trend down"><i class="bi bi-arrow-down-short"></i>1,1%</span>
+          </div>
+        </div>
+
+        <!-- KPI 5 -->
+        <div class="col-6 col-md-4 col-xl-2">
+          <div class="kpi-card kpi-primary">
+            <div class="kpi-icon"><i class="bi bi-graph-up-arrow"></i></div>
+            <span class="kpi-value" data-target="76" data-suffix="%">0</span>
+            <span class="kpi-label">Aprovação</span>
+            <span class="kpi-trend up"><i class="bi bi-arrow-up-short"></i>4,5%</span>
+          </div>
+        </div>
+
+        <!-- KPI 6 -->
+        <div class="col-6 col-md-4 col-xl-2">
+          <div class="kpi-card kpi-secondary">
+            <div class="kpi-icon"><i class="bi bi-star-fill"></i></div>
+            <span class="kpi-value" data-target="5" data-decimal="1">0</span>
+            <span class="kpi-label">IDEB Médio</span>
+            <span class="kpi-trend up"><i class="bi bi-arrow-up-short"></i>0,3 pts</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ GRÁFICOS ═══════════════ -->
+  <section id="graficos" class="section-charts py-5">
+    <div class="container">
+      <div class="section-header mb-5">
+        <span class="section-badge">Visualizações</span>
+        <h2 class="section-title">Análises e Gráficos</h2>
+        <p class="section-desc">Filtre por ano para comparar a evolução dos indicadores.</p>
+      </div>
+
+      <!-- Filtros Globais de Gráficos -->
+      <div class="chart-filter-bar d-flex flex-wrap align-items-center gap-3 mb-5 p-3">
+        <span class="filter-label"><i class="bi bi-funnel-fill me-1"></i>Filtrar por ano:</span>
+        <div class="d-flex gap-2" id="chartYearFilters">
+          <button class="filter-btn active" data-chart-year="todos">Todos</button>
+          <button class="filter-btn" data-chart-year="2022">2022</button>
+          <button class="filter-btn" data-chart-year="2023">2023</button>
+          <button class="filter-btn" data-chart-year="2024">2024</button>
+        </div>
+      </div>
+
+      <div class="row g-4">
+
+        <!-- Gráfico 1: Matrículas por Ano -->
+        <div class="col-12 col-lg-6">
+          <div class="chart-card">
+            <div class="chart-card-header">
+              <h3 class="chart-title"><i class="bi bi-bar-chart-fill me-2"></i>Matrículas por Ano</h3>
+              <div class="chart-actions">
+                <select class="chart-select" id="selectTurno">
+                  <option value="todos">Todos os turnos</option>
+                  <option value="manha">Manhã</option>
+                  <option value="tarde">Tarde</option>
+                  <option value="noite">Noite</option>
+                </select>
+              </div>
+            </div>
+            <div class="chart-wrapper">
+              <canvas id="chartMatriculas"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gráfico 2: Aprovação vs Reprovação vs Evasão -->
+        <div class="col-12 col-lg-6">
+          <div class="chart-card">
+            <div class="chart-card-header">
+              <h3 class="chart-title"><i class="bi bi-pie-chart-fill me-2"></i>Resultados do Ano Letivo</h3>
+              <div class="chart-actions">
+                <select class="chart-select" id="selectAnoResultado">
+                  <option value="2024">2024</option>
+                  <option value="2023">2023</option>
+                  <option value="2022">2022</option>
+                </select>
+              </div>
+            </div>
+            <div class="chart-wrapper">
+              <canvas id="chartResultados"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gráfico 3: IDEB por Escola (horizontal bar) -->
+        <div class="col-12 col-lg-8">
+          <div class="chart-card">
+            <div class="chart-card-header">
+              <h3 class="chart-title"><i class="bi bi-bar-chart-steps me-2"></i>IDEB por Escola (Top 10)</h3>
+              <div class="chart-actions">
+                <select class="chart-select" id="selectAnoIdeb">
+                  <option value="2024">2024</option>
+                  <option value="2023">2023</option>
+                  <option value="2022">2022</option>
+                </select>
+              </div>
+            </div>
+            <div class="chart-wrapper chart-wrapper-tall">
+              <canvas id="chartIdeb"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gráfico 4: Evasão por Série -->
+        <div class="col-12 col-lg-4">
+          <div class="chart-card">
+            <div class="chart-card-header">
+              <h3 class="chart-title"><i class="bi bi-graph-down-arrow me-2"></i>Evasão por Série</h3>
+            </div>
+            <div class="chart-wrapper">
+              <canvas id="chartEvasao"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gráfico 5: Evolução do Rendimento Mensal -->
+        <div class="col-12">
+          <div class="chart-card">
+            <div class="chart-card-header">
+              <h3 class="chart-title"><i class="bi bi-activity me-2"></i>Evolução do Rendimento Bimestral</h3>
+              <div class="chart-actions">
+                <select class="chart-select" id="selectSerieRendimento">
+                  <option value="todos">Todas as séries</option>
+                  <option value="1ano">1º Ano</option>
+                  <option value="2ano">2º Ano</option>
+                  <option value="3ano">3º Ano</option>
+                </select>
+              </div>
+            </div>
+            <div class="chart-wrapper">
+              <canvas id="chartRendimento"></canvas>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ ESCOLAS ═══════════════ -->
+  <section id="escolas" class="section-escolas py-5">
+    <div class="container">
+      <div class="section-header mb-5">
+        <span class="section-badge">Rede</span>
+        <h2 class="section-title">Escolas da 15ª GRE</h2>
+        <p class="section-desc">Unidades escolares sob coordenação desta gerência.</p>
+      </div>
+
+      <!-- Busca -->
+      <div class="search-box mb-4">
+        <i class="bi bi-search search-icon"></i>
+        <input type="text" id="escolaSearch" class="search-input" placeholder="Buscar escola ou município…" />
+      </div>
+
+      <div class="table-responsive escola-table-wrap">
+        <table class="table escola-table" id="escolaTable">
+          <thead>
+            <tr>
+              <th>Escola</th>
+              <th>Município</th>
+              <th>Matrículas</th>
+              <th>IDEB</th>
+              <th>Aprovação</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="escolaTbody">
+            <!-- gerado por JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Divisória superior do footer -->
+  <div class="gov-strip" aria-hidden="true">
+    <span class="strip-yellow"></span>
+    <span class="strip-red"></span>
+    <span class="strip-blue"></span>
+    <span class="strip-green"></span>
+    <span class="strip-black"></span>
+  </div>
+
+  <!-- ═══════════════ FOOTER ═══════════════ -->
+  <footer class="site-footer">
+    <div class="container py-4">
+      <div class="row g-4 align-items-center">
+        <div class="col-md-6">
+          <div class="d-flex align-items-center gap-3 mb-2">
+            <div class="footer-emblem"><i class="bi bi-building-fill-gear"></i></div>
+            <span class="footer-brand">15ª GRE · Paraíba</span>
+          </div>
+          <p class="footer-desc">Secretaria de Estado da Educação da Paraíba – Gerência Regional de Educação nº 15. Todos os direitos reservados.</p>
+        </div>
+        <div class="col-md-6 text-md-end">
+          <p class="footer-copy">© 2024 Governo do Estado da Paraíba</p>
+          <p class="footer-copy">Desenvolvido pela Equipe de TI/SEE-PB</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom JS -->
+  <script src="script.js"></script>
+</body>
+</html>
