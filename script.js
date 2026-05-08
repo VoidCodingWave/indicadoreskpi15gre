@@ -33,83 +33,154 @@ function rgba(hex, alpha) {
    1. DADOS BASE
 ═══════════════════════════════════════════ */
 
-const ANOS = [2022, 2023, 2024];
+const ANOS = [2024, 2025, 2026];
 
 /* Matrículas por ano / turno */
 const dadosMatriculas = {
-  todos: { 2022: 13100, 2023: 14340, 2024: 14820 },
-  manha: { 2022:  6200, 2023:  6800, 2024:  7050 },
-  tarde: { 2022:  4300, 2023:  4700, 2024:  4870 },
-  noite: { 2022:  2600, 2023:  2840, 2024:  2900 },
+  todos: { 2024: 8540, 2025: 8810, 2026: 9120 },
+  manha: { 2024: 3900, 2025: 4020, 2026: 4180 },
+  tarde: { 2024: 2840, 2025: 2930, 2026: 3040 },
+  noite: { 2024: 1800, 2025: 1860, 2026: 1900 },
 };
 
 /* Resultados do ano letivo */
 const dadosResultados = {
-  2024: { aprovacao: 76, reprovacao: 16, evasao: 8 },
-  2023: { aprovacao: 71, reprovacao: 18, evasao: 11 },
-  2022: { aprovacao: 68, reprovacao: 20, evasao: 12 },
+  2026: { aprovacao: 79, reprovacao: 14, evasao: 7 },
+  2025: { aprovacao: 75, reprovacao: 16, evasao: 9 },
+  2024: { aprovacao: 71, reprovacao: 18, evasao: 11 },
 };
 
-/* IDEB por escola */
+/* IDEB por escola – Top 10 das escolas reais */
 const escolasTop10 = [
-  'EE Gov. João Agripino',
-  'EE Pe. Rolim',
-  'EEEFM Napoleão Laureano',
-  'EE Prof. Alfredo Dantas',
-  'EE Maria de Lourdes',
-  'EE Dom Bosco',
-  'EE Monsenhor Constantino',
-  'EE Epitácio Pessoa',
-  'EE São Francisco',
-  'EE Santos Dumont',
+  'ECIT Francisco Ernesto do Rêgo',
+  'ECIT Conselheiro José Braz do Rêgo',
+  'ECIT Deputado Carlos Pessoa Filho',
+  'ECIT Alcides Bezerra',
+  'ECIT Severino Barbosa Camelo',
+  'ECIT Presidente João Pessoa',
+  'ECIT Prof.ª Maria Cecília de Castro',
+  'ECIT Almirante Antônio H. do Rêgo',
+  'ECIT Dr. Francisco de A. Montenegro',
+  'EEEM José Tavares',
 ];
 const dadosIdeb = {
-  2024: [5.8, 5.6, 5.4, 5.3, 5.1, 4.9, 4.8, 4.6, 4.4, 4.2],
-  2023: [5.5, 5.3, 5.1, 5.0, 4.8, 4.6, 4.5, 4.3, 4.1, 3.9],
-  2022: [5.1, 4.9, 4.8, 4.6, 4.4, 4.2, 4.1, 3.9, 3.8, 3.6],
+  2026: [5.9, 5.7, 5.5, 5.4, 5.2, 5.0, 4.9, 4.7, 4.5, 4.3],
+  2025: [5.6, 5.4, 5.2, 5.1, 4.9, 4.7, 4.6, 4.4, 4.2, 4.0],
+  2024: [5.2, 5.0, 4.8, 4.7, 4.5, 4.3, 4.2, 4.0, 3.8, 3.7],
 };
 
 /* Evasão por série */
 const dadosEvasao = {
   labels: ['1º Ano', '2º Ano', '3º Ano'],
-  2024: [11, 7, 4],
-  2023: [14, 10, 6],
-  2022: [15, 12, 7],
+  2026: [10, 6, 4],
+  2025: [12, 8, 5],
+  2024: [14, 10, 7],
 };
 
 /* Rendimento bimestral */
 const bimestres = ['1º Bim', '2º Bim', '3º Bim', '4º Bim'];
 const dadosRendimento = {
-  todos: { 2024: [67, 71, 74, 78], 2023: [63, 67, 69, 73], 2022: [60, 64, 66, 70] },
-  '1ano':{ 2024: [63, 67, 71, 74], 2023: [59, 63, 65, 68], 2022: [56, 60, 63, 66] },
-  '2ano':{ 2024: [68, 72, 75, 79], 2023: [65, 68, 71, 74], 2022: [62, 65, 67, 71] },
-  '3ano':{ 2024: [71, 74, 77, 82], 2023: [67, 71, 73, 77], 2022: [63, 67, 69, 73] },
+  todos: { 2024: [63, 67, 70, 73], 2025: [66, 70, 73, 77], 2026: [69, 73, 76, 80] },
+  '1ano':{ 2024: [60, 64, 67, 70], 2025: [63, 67, 70, 73], 2026: [66, 70, 73, 77] },
+  '2ano':{ 2024: [64, 68, 71, 74], 2025: [67, 71, 74, 78], 2026: [70, 74, 77, 81] },
+  '3ano':{ 2024: [66, 70, 73, 77], 2025: [69, 73, 76, 80], 2026: [72, 76, 79, 83] },
 };
 
-/* Escolas para tabela */
-const escolas = [
-  { nome: 'EE Gov. João Agripino',       municipio: 'Cajazeiras',    matriculas: 620, ideb: 5.8, aprovacao: 84, status: 'regular' },
-  { nome: 'EE Pe. Rolim',                municipio: 'Cajazeiras',    matriculas: 540, ideb: 5.6, aprovacao: 82, status: 'regular' },
-  { nome: 'EEEFM Napoleão Laureano',     municipio: 'Sousa',         matriculas: 710, ideb: 5.4, aprovacao: 80, status: 'regular' },
-  { nome: 'EE Prof. Alfredo Dantas',     municipio: 'São José',      matriculas: 480, ideb: 5.3, aprovacao: 79, status: 'regular' },
-  { nome: 'EE Maria de Lourdes',         municipio: 'Marizópolis',   matriculas: 310, ideb: 5.1, aprovacao: 77, status: 'regular' },
-  { nome: 'EE Dom Bosco',               municipio: 'Bonito de Sta Cruz', matriculas: 290, ideb: 4.9, aprovacao: 75, status: 'regular' },
-  { nome: 'EE Monsenhor Constantino',    municipio: 'Triunfo',       matriculas: 260, ideb: 4.8, aprovacao: 73, status: 'atencao' },
-  { nome: 'EE Epitácio Pessoa',          municipio: 'Pombal',        matriculas: 550, ideb: 4.6, aprovacao: 72, status: 'atencao' },
-  { nome: 'EE São Francisco',            municipio: 'Aparecida',     matriculas: 220, ideb: 4.4, aprovacao: 70, status: 'atencao' },
-  { nome: 'EE Santos Dumont',            municipio: 'São João do Rio do Peixe', matriculas: 380, ideb: 4.2, aprovacao: 68, status: 'atencao' },
-  { nome: 'EE Prof. Joaquim Rolim',      municipio: 'Poço José',     matriculas: 195, ideb: 3.9, aprovacao: 64, status: 'critico' },
-  { nome: 'EE Santa Luzia',             municipio: 'Uiraúna',       matriculas: 210, ideb: 3.7, aprovacao: 61, status: 'critico' },
-  { nome: 'EE João Pessoa',             municipio: 'Jericó',        matriculas: 180, ideb: 3.5, aprovacao: 59, status: 'critico' },
-  { nome: 'EE Padre Ibiapina',          municipio: 'Brejo do Cruz', matriculas: 240, ideb: 4.0, aprovacao: 66, status: 'atencao' },
-  { nome: 'EE Pres. Emílio Garrastazu', municipio: 'São Bento',     matriculas: 320, ideb: 4.3, aprovacao: 69, status: 'atencao' },
-];
+/* ─── Cidades e escolas reais da 15ª GRE ─── */
+const dadosCidades = {
+  queimadas:              { nome: 'Queimadas',               isSede: true,  escolas: ['ECIT Francisco Ernesto do Rêgo', 'EEEM José Tavares', 'EEEEFM Tereza Alves de Moura'] },
+  fagundes:               { nome: 'Fagundes',                isSede: false, escolas: ['ECI Joana Emilia da Silva', 'EEEF Frei Alberto'] },
+  caturite:               { nome: 'Caturité',                isSede: false, escolas: ['ECI Felix Araujo'] },
+  boqueirao:              { nome: 'Boqueirão',               isSede: false, escolas: ['ECIT Conselheiro José Braz do Rêgo', 'ECIT Severino Barbosa Camelo'] },
+  cabaceiras:             { nome: 'Cabaceiras',              isSede: false, escolas: ['ECIT Alcides Bezerra', 'EEEFM Clovis Pedrosa'] },
+  'barra-santana':        { nome: 'Barra de Santana',        isSede: false, escolas: ['ECIT Almirante Antônio Heráclito do Rêgo'] },
+  'barra-sao-miguel':     { nome: 'Barra de São Miguel',     isSede: false, escolas: ['ECI Melquíades Tejo'] },
+  umbuzeiro:              { nome: 'Umbuzeiro',               isSede: false, escolas: ['ECIT Presidente João Pessoa'] },
+  'gado-bravo':           { nome: 'Gado Bravo',              isSede: false, escolas: ['ECI João da Silva Monteiro'] },
+  aroeiras:               { nome: 'Aroeiras',                isSede: false, escolas: ['ECIT Deputado Carlos Pessoa Filho', 'EEEFM Deputado Major José Barbosa'] },
+  natuba:                 { nome: 'Natuba',                  isSede: false, escolas: ['ECIT Doutor Francisco de Albuquerque Montenegro', 'EEEF Doutor Carlos Pessoa'] },
+  'santa-cecilia':        { nome: 'Santa Cecília',           isSede: false, escolas: ['ECI Antônio Francisco Gomes'] },
+  alcantil:               { nome: 'Alcantil',                isSede: false, escolas: ['ECIT Professora Maria Cecília de Castro'] },
+  'riacho-santo-antonio': { nome: 'Riacho de Santo Antônio', isSede: false, escolas: ['ECI Ana Ferreira da Costa'] },
+  'sao-domingos-cariri':  { nome: 'São Domingos do Cariri',  isSede: false, escolas: ['ECI Francisco Deodato do Nascimento'] },
+};
+
+/* Geração da lista de escolas para a tabela a partir de dadosCidades */
+const idebBase = {
+  'ECIT Francisco Ernesto do Rêgo':              5.2,
+  'EEEM José Tavares':                           3.7,
+  'EEEEFM Tereza Alves de Moura':                4.1,
+  'ECI Joana Emilia da Silva':                   4.4,
+  'EEEF Frei Alberto':                           3.9,
+  'ECI Felix Araujo':                            4.2,
+  'ECIT Conselheiro José Braz do Rêgo':          5.0,
+  'ECIT Severino Barbosa Camelo':                4.5,
+  'ECIT Alcides Bezerra':                        4.8,
+  'EEEFM Clovis Pedrosa':                        4.0,
+  'ECIT Almirante Antônio Heráclito do Rêgo':    4.4,
+  'ECI Melquíades Tejo':                         3.8,
+  'ECIT Presidente João Pessoa':                 4.3,
+  'ECI João da Silva Monteiro':                  3.6,
+  'ECIT Deputado Carlos Pessoa Filho':           4.7,
+  'EEEFM Deputado Major José Barbosa':           4.1,
+  'ECIT Doutor Francisco de Albuquerque Montenegro': 4.2,
+  'EEEF Doutor Carlos Pessoa':                   3.7,
+  'ECI Antônio Francisco Gomes':                 4.0,
+  'ECIT Professora Maria Cecília de Castro':     4.6,
+  'ECI Ana Ferreira da Costa':                   3.5,
+  'ECI Francisco Deodato do Nascimento':         3.8,
+};
+
+const matriculasBase = {
+  'ECIT Francisco Ernesto do Rêgo':              680,
+  'EEEM José Tavares':                           520,
+  'EEEEFM Tereza Alves de Moura':                410,
+  'ECI Joana Emilia da Silva':                   295,
+  'EEEF Frei Alberto':                           210,
+  'ECI Felix Araujo':                            185,
+  'ECIT Conselheiro José Braz do Rêgo':          490,
+  'ECIT Severino Barbosa Camelo':                340,
+  'ECIT Alcides Bezerra':                        380,
+  'EEEFM Clovis Pedrosa':                        265,
+  'ECIT Almirante Antônio Heráclito do Rêgo':    310,
+  'ECI Melquíades Tejo':                         190,
+  'ECIT Presidente João Pessoa':                 330,
+  'ECI João da Silva Monteiro':                  175,
+  'ECIT Deputado Carlos Pessoa Filho':           420,
+  'EEEFM Deputado Major José Barbosa':           280,
+  'ECIT Doutor Francisco de Albuquerque Montenegro': 350,
+  'EEEF Doutor Carlos Pessoa':                   225,
+  'ECI Antônio Francisco Gomes':                 200,
+  'ECIT Professora Maria Cecília de Castro':     295,
+  'ECI Ana Ferreira da Costa':                   155,
+  'ECI Francisco Deodato do Nascimento':         170,
+};
+
+function calcStatus(ideb) {
+  return ideb >= 4.8 ? 'regular' : ideb >= 4.0 ? 'atencao' : 'critico';
+}
+function calcAprovacao(ideb) {
+  return Math.round(55 + ideb * 5.2);
+}
+
+const escolas = Object.values(dadosCidades).flatMap(cidade =>
+  cidade.escolas.map(nome => ({
+    nome,
+    municipio: cidade.nome,
+    isSede: cidade.isSede,
+    matriculas: matriculasBase[nome] || 200,
+    ideb:       idebBase[nome]       || 4.0,
+    aprovacao:  calcAprovacao(idebBase[nome] || 4.0),
+    status:     calcStatus(idebBase[nome]    || 4.0),
+  }))
+);
 
 /* KPIs por ano */
+const totalEscolas = escolas.length;
 const kpiData = {
-  2024: { matriculas: 14820, professores: 892, escolas: 42, evasao: 8,  aprovacao: 76, ideb: 5.0 },
-  2023: { matriculas: 14340, professores: 875, escolas: 42, evasao: 11, aprovacao: 71, ideb: 4.7 },
-  2022: { matriculas: 13100, professores: 850, escolas: 42, evasao: 12, aprovacao: 68, ideb: 4.4 },
+  2026: { matriculas: 9120,  professores: 548, escolas: totalEscolas, evasao: 7,  aprovacao: 79, ideb: 4.6 },
+  2025: { matriculas: 8810,  professores: 531, escolas: totalEscolas, evasao: 9,  aprovacao: 75, ideb: 4.3 },
+  2024: { matriculas: 8540,  professores: 514, escolas: totalEscolas, evasao: 11, aprovacao: 71, ideb: 4.1 },
 };
 
 /* ═══════════════════════════════════════════
@@ -133,7 +204,7 @@ function animateCounter(el, target, duration = 1400, decimal = 0, suffix = '') {
   requestAnimationFrame(update);
 }
 
-function renderKPIs(year = 2024) {
+function renderKPIs(year = 2026) {
   const d = kpiData[year];
   const items = [
     { target: d.matriculas,   suffix: '',  decimal: 0 },
@@ -216,7 +287,7 @@ function buildChartMatriculas(turno = 'todos') {
 }
 
 /* 3.2 Resultados do Ano Letivo (Doughnut) */
-function buildChartResultados(ano = 2024) {
+function buildChartResultados(ano = 2026) {
   const ctx = document.getElementById('chartResultados').getContext('2d');
   const d = dadosResultados[ano];
 
@@ -252,7 +323,7 @@ function buildChartResultados(ano = 2024) {
 }
 
 /* 3.3 IDEB por Escola (Horizontal Bar) */
-function buildChartIdeb(ano = 2024) {
+function buildChartIdeb(ano = 2026) {
   const ctx = document.getElementById('chartIdeb').getContext('2d');
   const dados = dadosIdeb[ano];
 
@@ -301,7 +372,7 @@ function buildChartIdeb(ano = 2024) {
 }
 
 /* 3.4 Evasão por Série (Bar) */
-function buildChartEvasao(ano = 2024) {
+function buildChartEvasao(ano = 2026) {
   const ctx = document.getElementById('chartEvasao').getContext('2d');
   const dados = dadosEvasao[ano];
 
@@ -496,7 +567,7 @@ const kpiSection = document.getElementById('kpis');
 const kpiObserver = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      renderKPIs(2024);
+      renderKPIs(2026);
       kpiObserver.disconnect();
     }
   });
