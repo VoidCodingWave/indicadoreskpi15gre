@@ -79,7 +79,7 @@
     <div class="container py-5">
       <div class="row align-items-center min-vh-hero">
         <div class="col-lg-7">
-          <p class="hero-eyebrow">Painel Institucional · 2024</p>
+          <p class="hero-eyebrow">Painel Institucional · 2026</p>
           <h1 class="hero-title">Educação pública<br><em>de excelência</em><br>no sertão paraibano.</h1>
           <p class="hero-desc">A 15ª Gerência Regional de Educação acompanha e apoia escolas estaduais de ensino médio nos municípios da sua área de abrangência, promovendo qualidade, equidade e desenvolvimento.</p>
           <div class="d-flex gap-3 flex-wrap mt-4">
@@ -91,21 +91,21 @@
           <div class="hero-stat-card">
             <div class="hsc-row">
               <div class="hsc-item">
-                <span class="hsc-num" id="heroTotal">42</span>
+                <span class="hsc-num" id="heroTotal">22</span>
                 <span class="hsc-label">Escolas</span>
               </div>
               <div class="hsc-item">
-                <span class="hsc-num" id="heroMunic">18</span>
+                <span class="hsc-num" id="heroMunic">15</span>
                 <span class="hsc-label">Municípios</span>
               </div>
             </div>
             <div class="hsc-row">
               <div class="hsc-item">
-                <span class="hsc-num" id="heroAlunos">14.820</span>
+                <span class="hsc-num" id="heroAlunos">9.120</span>
                 <span class="hsc-label">Alunos</span>
               </div>
               <div class="hsc-item">
-                <span class="hsc-num" id="heroProf">892</span>
+                <span class="hsc-num" id="heroProf">548</span>
                 <span class="hsc-label">Professores</span>
               </div>
             </div>
@@ -121,14 +121,14 @@
       <div class="section-header mb-5">
         <span class="section-badge">Indicadores</span>
         <h2 class="section-title">Principais Indicadores</h2>
-        <p class="section-desc">Dados consolidados do ano letivo 2024. Atualização mensal.</p>
+        <p class="section-desc">Dados consolidados do ano letivo 2026. Atualização mensal.</p>
       </div>
 
       <!-- Filtros de Ano -->
       <div class="d-flex flex-wrap gap-2 mb-4" id="kpiFilters">
-        <button class="filter-btn active" data-year="2024">2024</button>
-        <button class="filter-btn" data-year="2023">2023</button>
-        <button class="filter-btn" data-year="2022">2022</button>
+        <button class="filter-btn active" data-year="2026">2026</button>
+        <button class="filter-btn" data-year="2025">2025</button>
+        <button class="filter-btn" data-year="2024">2024</button>
       </div>
 
       <div class="row g-4" id="kpiGrid">
@@ -211,9 +211,9 @@
         <span class="filter-label"><i class="bi bi-funnel-fill me-1"></i>Filtrar por ano:</span>
         <div class="d-flex gap-2" id="chartYearFilters">
           <button class="filter-btn active" data-chart-year="todos">Todos</button>
-          <button class="filter-btn" data-chart-year="2022">2022</button>
-          <button class="filter-btn" data-chart-year="2023">2023</button>
           <button class="filter-btn" data-chart-year="2024">2024</button>
+          <button class="filter-btn" data-chart-year="2025">2025</button>
+          <button class="filter-btn" data-chart-year="2026">2026</button>
         </div>
       </div>
 
@@ -246,9 +246,9 @@
               <h3 class="chart-title"><i class="bi bi-pie-chart-fill me-2"></i>Resultados do Ano Letivo</h3>
               <div class="chart-actions">
                 <select class="chart-select" id="selectAnoResultado">
+                  <option value="2026">2026</option>
+                  <option value="2025">2025</option>
                   <option value="2024">2024</option>
-                  <option value="2023">2023</option>
-                  <option value="2022">2022</option>
                 </select>
               </div>
             </div>
@@ -265,9 +265,9 @@
               <h3 class="chart-title"><i class="bi bi-bar-chart-steps me-2"></i>IDEB por Escola (Top 10)</h3>
               <div class="chart-actions">
                 <select class="chart-select" id="selectAnoIdeb">
+                  <option value="2026">2026</option>
+                  <option value="2025">2025</option>
                   <option value="2024">2024</option>
-                  <option value="2023">2023</option>
-                  <option value="2022">2022</option>
                 </select>
               </div>
             </div>
@@ -369,12 +369,25 @@
           <p class="footer-desc">Secretaria de Estado da Educação da Paraíba – Gerência Regional de Educação nº 15. Todos os direitos reservados.</p>
         </div>
         <div class="col-md-6 text-md-end">
-          <p class="footer-copy">© 2024 Governo do Estado da Paraíba</p>
+          <p class="footer-copy">© 2026 Governo do Estado da Paraíba</p>
           <p class="footer-copy">Desenvolvido pela Equipe de TI/SEE-PB</p>
         </div>
       </div>
     </div>
   </footer>
+
+  <!-- Toast de sucesso -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="successToast" class="toast align-items-center border-0" role="alert">
+      <div class="d-flex">
+        <div class="toast-body">
+          <i class="bi bi-check-circle-fill me-2 text-success"></i>
+          Mensagem enviada com sucesso!
+        </div>
+        <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"></button>
+      </div>
+    </div>
+  </div>
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
